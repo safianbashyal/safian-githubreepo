@@ -1,76 +1,233 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>C-Snake Console v1.0</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Name | Portfolio</title>
+
   <style>
     :root {
-      --terminal-green: #33ff33;
-      --terminal-bg: #0a0a0a;
+      --bg: #0f172a;
+      --card: #111827;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
     }
-    body {
-      background-color: #000;
-      color: var(--terminal-green);
-      font-family: 'Fira Code', monospace;
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      overflow: hidden;
-      text-transform: uppercase;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     }
-    .crt-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                  linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-      background-size: 100% 2px, 3px 100%;
-      pointer-events: none;
-      z-index: 100;
+
+    body {
+      background: linear-gradient(135deg, #020617, #0f172a);
+      color: var(--text);
+      line-height: 1.6;
     }
-    .terminal-window {
-      border: 2px solid var(--terminal-green);
-      box-shadow: 0 0 20px rgba(51, 255, 51, 0.2);
-      padding: 20px;
-      min-height: 500px;
-      max-width: 800px;
-      width: 95%;
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
     }
-    .cursor::after {
-      content: "_";
-      animation: blink 1s infinite;
+
+    header {
+      padding: 4rem 1.5rem;
+      text-align: center;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
-    kbd {
-      border: 1px solid var(--terminal-green);
-      padding: 2px 4px;
-      margin: 0 2px;
+
+    header p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: auto;
     }
-    input {
-      background: transparent;
-      border: none;
-      border-bottom: 2px solid var(--terminal-green);
-      color: var(--terminal-green);
-      outline: none;
-      font-family: inherit;
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 3rem 1.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill {
+      background: var(--card);
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .project h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin: 0.5rem 1rem;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
     }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
-  }
-}
-</script>
 </head>
 <body>
-  <div class="crt-overlay"></div>
-  <div id="root"></div>
+
+  <!-- HERO -->
+  <header>
+    <h1>Your Name</h1>
+    <p>
+      Web Developer • Designer • Problem Solver  
+      <br/>
+      I build clean, modern, and user-friendly digital experiences.
+    </p>
+  </header>
+
+  <!-- ABOUT -->
+  <section>
+    <h2>About Me</h2>
+    <div class="about">
+      <img src="https://via.placeholder.com/400x400" alt="Your photo" />
+      <div>
+        <p>
+          Hi! I’m a passionate developer who loves turning ideas into
+          real-world applications. I focus on clean code, intuitive UX,
+          and performance.
+        </p>
+        <br/>
+        <p>
+          When I’m not coding, I enjoy learning new technologies,
+          working on side projects, and improving my design skills.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">React</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Git</div>
+      <div class="skill">UI/UX</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>Project One</h3>
+        <p>
+          A web application that solves a real-world problem using modern
+          technologies.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Project Two</h3>
+        <p>
+          A responsive website designed with a mobile-first approach.
+        </p>
+      </div>
+
+      <div class="project">
+        <h3>Project Three</h3>
+        <p>
+          An interactive project showcasing animations and clean UI.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Let’s build something together 🚀</p>
+    <br/>
+    <a href="mailto:youremail@example.com">Email</a>
+    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+    <a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a>
+  </section>
+
+  <footer>
+    © 2026 Your Name. All rights reserved.
+  </footer>
+
 </body>
 </html>
